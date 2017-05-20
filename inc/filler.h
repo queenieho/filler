@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 08:28:35 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/20 15:14:16 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,37 @@ typedef struct	s_map
 	int			height;
 	t_piece		piece;
 	int			**map;  //dynamically allocated by the map size. Plateau.
+	char		*move;
 }				t_map;
+
+/*
+** FT_INIT_C
+*/
+void	ft_get_piecesize(char *line, t_piece *piece);
+void	ft_init_piece(char *line, t_map *map);
+void	ft_get_mapsize(char *line, t_map *map);
+void	ft_init_map(char *line, t_map *map);
+
+/*
+** FT_LOAD_C
+*/
+void	ft_load_map(t_map *map, char *line);
+
+
+/*
+** FT_PRINT_C
+*/
+void	ft_print_grid(int **grid, int height, int width);
+
+/*
+** MAIN_C
+*/
+void	ft_array_del(char **values);
+int		ft_get_player(char *line);
+int		ft_get_linecount(char *line);
+int		ft_get_width(char *line);
+void	ft_get_piecesize(char *line, t_piece *piece);
+int		ft_parse(char *line, t_map *map);
 
 
 #endif
