@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/19 22:01:48 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/20 09:27:05 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,68 @@ int		ft_get_player(char *line)
 	return (p);
 }
 
+int		ft_get_linecount(char *line)
+{
+	int		count;
+	char	**split;
+
+	count = 0;
+	split = ft_strsplit(line, ' ');
+	count = ft_atoi(split[1]);
+	ft_array_del(split);
+	return (count);
+}
+
+int		ft_get_width(char *line)
+{
+	int		count;
+	char	**split;
+
+	count = 0;
+	split = ft_strsplit(line, ' ');
+	count = ft_atoi(split[2]);
+	ft_array_del(split);
+	return (count);
+}
+
+void	ft_get_mapsize(char *line, t_map *map)
+{
+	map->height = ft_get_linecount(line);
+	map->width = ft_get_width(line);
+}
+
+void	ft_get_piecesize(char *line, t_piece *piece)
+{
+	piece->height = ft_get_linecount(line);
+	piece->width = ft_get_width(line);
+}
+
 int		ft_parse(char *line, t_map *map)
 {
+	static int	m_row = 0;
+	static int	p_row = 0;
+	int			row;
+
 	(void)map;
-	if (!(ft_strncmp(line, "$$$", 3)))
+	if ((!(ft_strncmp(line, "$$$", 3))) && (ft_strstr(line, NAME)))
 	{
-		if (ft_strstr(line, NAME))
-		{
-			map->player = ft_get_player(line);
-			fprintf(stderr, "%s%s%s\n", G, line, W);
-			fprintf(stderr, "%s player: %d%s\n", G, map->player, W);
-		}
+		map->player = ft_get_player(line);
+		// fprintf(stderr, "%s%s%s\n", G, line, W);
+		fprintf(stderr, "%s player: %d%s\n", Y, map->player, W);
+	}
+	if (!(ft_strncmp(line, "Plateau", 7)))
+	{
+		// m_row = ft_get_linecount(line);
+		ft_get_mapsize(line, map);
+		m_row = map->height + 1;
+		fprintf(stderr, "%s map len: %d, map width %d%s\n", Y, m_row, map->width, W);
+	}
+	if (!(ft_strncmp(line, "Piece", 5)))
+	{
+		ft_get_piecesize(line, &map->piece);
+		p_row = map->piece.height;
+		// p_row = ft_get_linecount(line);
+		fprintf(stderr, "%s piece len: %d, piece width %d%s\n", Y, p_row, map->piece.width, W);
 	}
 	return (0);
 }
