@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:11:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 22:05:53 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/21 00:38:56 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,40 @@ void	ft_heatmap(t_map *map)
 	}
 }
 
+void	ft_get_piece_origin(t_piece *piece, int r, int c)
+{
+	piece->r = r < piece->r ? r : piece->r;
+	piece->c = c < piece->c ? c : piece->c;
+}
+
+void	ft_get_truesize(t_piece *piece)
+{
+	int		r;
+	int		c;
+	int		r_cnt;
+	int		w_cnt;
+	int		flag;
+
+	r = -1;
+	r_cnt = 0;
+	while (++r < piece->height)
+	{
+		c = -1;
+		flag = 0;
+		w_cnt = 0;
+		while (++c < piece->width)
+		{
+			if (piece->shape[r][c] == 1 && flag == 0)
+				flag = 1;
+			if (flag == 1 && piece->shape[r][c] == 1)
+				w_cnt++;
+		}
+		piece->true_w = w_cnt > piece->true_w ? w_cnt : piece->true_w;
+		r_cnt = flag == 1 ? r_cnt + 1 : r_cnt;
+	}
+	piece->true_h = r_cnt;
+}
+
 void	ft_load_piece(t_piece *piece, char *line)
 {
 	static int	r = 0;
@@ -91,12 +125,18 @@ void	ft_load_piece(t_piece *piece, char *line)
 		if (line[idx] == '.')
 			piece->shape[r][c] = 0;
 		else
+		{
+			ft_get_piece_origin(piece, r, c);
 			piece->shape[r][c] = 1;
+		}
 		idx++;
 	}
 	r++;
 	if (r == piece->height)
+	{	
+		ft_get_truesize(piece);
 		r = 0;
+	}
 }
 
 void	ft_load_map(t_map *map, char *line)

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:06:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 16:49:25 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/21 00:36:07 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void	ft_init_piece(char *line, t_map *map)
 	ft_get_piecesize(line, &map->piece);
 	// fprintf(stderr, "Got piece size\n");
 	r = -1;
+	map->piece.r = map->piece.height - 1;
+	map->piece.c = map->piece.width - 1;
+	map->piece.true_w = 0;
+	map->piece.true_h = 0;
 	map->piece.shape = (int **)malloc(sizeof(int*) * map->piece.height);
 	while (++r < map->piece.height)
 	{

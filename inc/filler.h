@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 17:45:05 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/20 23:22:18 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,19 @@
 /*
 ** DEFINE COLORS
 */
-# define G "\033[32;1m"
-# define Y "\033[33;1m"
-# define R "\033[31;1m"
-# define B "\033[34;1m"
-# define W "\033[0m"
+# define GR "\x1b[90;1m"
+# define G "\x1b[32;1m"
+# define Y "\x1b[33;1m"
+# define R "\x1b[31;1m"
+# define B "\x1b[34;1m"
+# define M "\x1b[35;1m"
+# define C "\x1b[36;1m"
+# define W "\x1b[0m"
+// # define G "\x1b[32m"
+// # define Y "\x1b[33m"
+// # define R "\x1b[31m"
+// # define B "\x1b[34m"
+// # define W "\x1b[0m"
 
 # ifndef ERRORS
 #  define ERR(a, b) if(a){return(b);}
@@ -45,12 +53,16 @@ typedef struct	s_piece
 {
 	int			width;
 	int			height;
+	int			true_w;
+	int			true_h;
+	int			r;
+	int			c;
 	int			**shape;
 }				t_piece;
 
 typedef struct	s_map
 {
-	char		player; // indicates if I'm player 1 or 2.
+	char		player;
 	char		enemy;
 	int			width;
 	int			height;
