@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 15:14:16 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/20 17:45:05 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "../libft/libft.h"
 
 # define NAME "./filler"
-# define P1 "Oo"
-# define P2 "Xx"
 
 /*
 ** DEFINE COLORS
@@ -52,7 +50,8 @@ typedef struct	s_piece
 
 typedef struct	s_map
 {
-	int			player; // indicates if I'm player 1 or 2.
+	char		player; // indicates if I'm player 1 or 2.
+	char		enemy;
 	int			width;
 	int			height;
 	t_piece		piece;
@@ -71,6 +70,8 @@ void	ft_init_map(char *line, t_map *map);
 /*
 ** FT_LOAD_C
 */
+void	ft_heatmap(t_map *map);
+void	ft_load_piece(t_piece *piece, char *line);
 void	ft_load_map(t_map *map, char *line);
 
 
@@ -83,7 +84,7 @@ void	ft_print_grid(int **grid, int height, int width);
 ** MAIN_C
 */
 void	ft_array_del(char **values);
-int		ft_get_player(char *line);
+char	ft_get_player(char *line);
 int		ft_get_linecount(char *line);
 int		ft_get_width(char *line);
 void	ft_get_piecesize(char *line, t_piece *piece);
