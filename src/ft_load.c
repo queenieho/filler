@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:11:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/21 00:38:56 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 01:30:29 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,71 @@ void	ft_get_piece_origin(t_piece *piece, int r, int c)
 	piece->c = c < piece->c ? c : piece->c;
 }
 
-void	ft_get_truesize(t_piece *piece)
+int		ft_get_count(int *ar, int len)
 {
+	int	idx;
+	int	cnt;
+
+	idx = -1;
+	cnt = 0;
+	while (++idx < len)
+	{
+		if (ar[idx] == 1)
+			cnt++;
+	}
+	return (cnt);
+}
+
+int		ft_get_piece_width(t_piece *piece)
+{
+	int		ar[piece->width];
 	int		r;
 	int		c;
-	int		r_cnt;
-	int		w_cnt;
-	int		flag;
+	int		idx;
+	int		cnt;
 
 	r = -1;
-	r_cnt = 0;
+	cnt = 0;
+	ft_bzero(ar, sizeof(int) * piece->width);
 	while (++r < piece->height)
 	{
 		c = -1;
-		flag = 0;
-		w_cnt = 0;
+		idx = 0;
 		while (++c < piece->width)
 		{
-			if (piece->shape[r][c] == 1 && flag == 0)
-				flag = 1;
-			if (flag == 1 && piece->shape[r][c] == 1)
-				w_cnt++;
+			if (piece->shape[r][c] == 1)
+				ar[idx] = 1;
+			idx++;
 		}
-		piece->true_w = w_cnt > piece->true_w ? w_cnt : piece->true_w;
-		r_cnt = flag == 1 ? r_cnt + 1 : r_cnt;
 	}
-	piece->true_h = r_cnt;
+	cnt = ft_get_count(ar, piece->width);
+	return (cnt);
+}
+
+int		ft_get_piece_height(t_piece *piece)
+{
+	int		r;
+	int		c;
+	int		height;
+
+	r = -1;
+	height = 0;
+	while (++r < piece->height)
+	{
+		c = -1;
+		while (++c < piece->width)
+		{
+			if (piece->shape[r][c] == 1 && r >= height)
+				height++;
+		}
+	}
+	return (height);
+}
+
+void	ft_get_truesize(t_piece *piece)
+{
+	piece->true_h = ft_get_piece_height(piece);
+	piece->true_w = ft_get_piece_width(piece);
 }
 
 void	ft_load_piece(t_piece *piece, char *line)

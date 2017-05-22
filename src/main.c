@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/21 18:04:19 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 01:36:22 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int		ft_parse(char *line, t_map *map)
 	{
 		map->player = ft_get_player(line);
 		map->enemy = (map->player == 'O') ? 'X' : 'O';
-		fprintf(stderr, "%s player: %c  enemy: %c%s\n", Y, map->player, map->enemy, W);
+		// fprintf(stderr, "%s player: %c  enemy: %c%s\n", Y, map->player, map->enemy, W);
 	}
 	if (!(ft_strncmp(line, "Plateau", 7)))
 	{
 		ft_init_map(line, map);
-		fprintf(stderr, "%s map len: %d, map width %d%s\n", Y, map->height, map->width, W);
+		// fprintf(stderr, "%s map len: %d, map width %d%s\n", Y, map->height, map->width, W);
 		// ft_print_grid(map->map, map->height, map->width);
 		// ft_get_mapsize(line, map);
 		m_row = map->height + 2;
@@ -117,14 +117,14 @@ int		ft_parse(char *line, t_map *map)
 		p_row--;
 		if (p_row == 0)
 		{
-			fprintf(stderr, "%s•••• Done reading piece%s\n", R, W);
-			fprintf(stderr, "MAP\n");
-			ft_print_grid(map->map, map->height, map->width);
-			fprintf(stderr, "\nPIECE\n");
-			ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
-			fprintf(stderr, "Origin: row: %d - col: %d\n", map->piece.r, map->piece.c);
-			fprintf(stderr, "Size: w: %d - h: %d\n", map->piece.width, map->piece.height);
-			fprintf(stderr, "TRUE Size: w: %d - h: %d\n", map->piece.true_w, map->piece.true_h);
+			// fprintf(stderr, "%s•••• Done reading piece%s\n", R, W);
+			// fprintf(stderr, "MAP\n");
+			// ft_print_grid(map->map, map->height, map->width);
+			// fprintf(stderr, "\nPIECE\n");
+			// ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
+			// fprintf(stderr, "Origin: row: %d - col: %d\n", map->piece.r, map->piece.c);
+			// fprintf(stderr, "Size: w: %d - h: %d\n", map->piece.width, map->piece.height);
+			// fprintf(stderr, "TRUE Size: w: %d - h: %d\n", map->piece.true_w, map->piece.true_h);
 			return (1);
 		}
 	}
@@ -154,14 +154,18 @@ char	*ft_solution(t_map *m)
 {
 	char	*ret;
 	char	*col;
+	char	*tmp;
 
 	ret = ft_itoa(m->sol_r);
 	col = ft_itoa(m->sol_c);
-	ret = ft_strjoin(ret, " ");
-	ret = ft_strjoin(ret, col);
+	tmp = ft_strjoin(ret, " ");
+	free(ret);
+	ret = ft_strjoin(tmp, col);
+	free(tmp);
 	free(col);
-	ret = ft_strjoin(ret, "\n");
-	return (ret);
+	tmp = ft_strjoin(ret, "\n");
+	free(ret);
+	return (tmp);
 }
 
 int		main(void)
@@ -176,13 +180,17 @@ int		main(void)
 	{
 		if (ft_parse(line, &map) == 1) // ft_parse returns 1 when it's done reading the whole map and piece
 		{
+			// ft_print_grid(map->map, map->height, map->width);
+			// ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
 			ft_play(&map);
 			solution = ft_solution(&map);
-			fprintf(stderr, "place piece at: %s\n", solution);
+			// fprintf(stderr, "place piece at: %s\n", solution);
 			ft_putstr_fd(solution, 1);
+			free(solution);
 			// write(1, "8 2\n", 5);
 			ft_cleanup_map(&map);
-			sleep(1);
+			
+			// sleep(1);
 			// Analize map, analize piece and place piece
 		}
 		// fprintf(stderr, "%3d: %s%s%s\n", i, G, line, W);
@@ -190,6 +198,6 @@ int		main(void)
 		free(line);
 		i++;
 	}
-	fprintf(stderr, "%stest line: %d %s%s\n", G, i, line, W);
+	// fprintf(stderr, "%stest line: %d %s%s\n", G, i, line, W);
 	return (0);
 }
