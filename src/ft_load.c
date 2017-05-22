@@ -6,11 +6,26 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:11:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 11:39:20 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 12:38:25 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int		ft_array_len(char **args)
+{
+	int		len;
+	char	**tmp;
+
+	len = 0;
+	tmp = args;
+	while (*tmp)
+	{
+		tmp++;
+		len++;
+	}
+	return (len);
+}
 
 int		ft_check_surround(t_map *m, int r, int c, int t)
 {
@@ -186,6 +201,8 @@ void	ft_load_map(t_map *map, char *line)
 	if (*line == '\0')
 		return ;
 	split = ft_strsplit(line, ' ');
+	if ((ft_array_len(split)) < 2)
+		return ;
 	idx = 0;
 	c = -1;
 	while (++c < map->width)

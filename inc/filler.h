@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 11:53:23 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 12:43:32 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	ft_init_map(char *line, t_map *map);
 /*
 ** FT_LOAD_C
 */
+int		ft_array_len(char **args);
 void	ft_heatmap(t_map *map);
 void	ft_load_piece(t_piece *piece, char *line);
 void	ft_load_map(t_map *map, char *line);

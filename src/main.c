@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 11:52:10 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 12:43:09 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int		ft_get_linecount(char *line)
 
 	count = 0;
 	split = ft_strsplit(line, ' ');
-	count = ft_atoi(split[1]);
+	if ((ft_array_len(split)) >= 2)
+		count = ft_atoi(split[1]);
 	ft_array_del(split);
 	return (count);
 }
@@ -57,7 +58,8 @@ int		ft_get_width(char *line)
 
 	count = 0;
 	split = ft_strsplit(line, ' ');
-	count = ft_atoi(split[2]);
+	if ((ft_array_len(split)) >= 3)
+		count = ft_atoi(split[2]);
 	ft_array_del(split);
 	return (count);
 }
