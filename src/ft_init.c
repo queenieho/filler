@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:06:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/21 00:36:07 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/21 13:56:58 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_init_piece(char *line, t_map *map)
 	map->piece.c = map->piece.width - 1;
 	map->piece.true_w = 0;
 	map->piece.true_h = 0;
+	map->sol_r = 0;
+	map->sol_c = 0;
 	map->piece.shape = (int **)malloc(sizeof(int*) * map->piece.height);
 	while (++r < map->piece.height)
 	{

@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/19 17:15:28 by qho               #+#    #+#              #
-#    Updated: 2017/05/20 15:12:04 by qho              ###   ########.fr        #
+#    Updated: 2017/05/21 13:31:12 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	=	filler
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
 
-FILES	=	main ft_print ft_init ft_load
+FILES	=	main ft_print ft_init ft_load ft_play
 INC		=	./inc/
 SRC		=	$(addprefix src/, $(addsuffix .c, $(FILES)))
 OBJ		=	$(addprefix build/, $(addsuffix .o, $(FILES)))

@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 23:22:18 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/21 13:56:32 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct	s_map
 	int			height;
 	t_piece		piece;
 	int			**map;  //dynamically allocated by the map size. Plateau.
+	int			sol_r;
+	int			sol_c;
 	char		*move;
 }				t_map;
 
@@ -86,6 +88,10 @@ void	ft_heatmap(t_map *map);
 void	ft_load_piece(t_piece *piece, char *line);
 void	ft_load_map(t_map *map, char *line);
 
+/*
+** FT_PLAY_C
+*/
+void	ft_play(t_map *map);
 
 /*
 ** FT_PRINT_C
