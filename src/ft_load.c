@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:11:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 01:30:29 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 08:40:25 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,8 @@ void	ft_load_piece(t_piece *piece, char *line)
 
 	c = -1;
 	idx = 0;
+	if (*line == '\0')
+		return ;
 	while (++c < piece->width)
 	{
 		if (line[idx] == '.')
@@ -186,6 +188,8 @@ void	ft_load_map(t_map *map, char *line)
 	int			c;
 	int			idx;
 
+	if (*line == '\0')
+		return ;
 	split = ft_strsplit(line, ' ');
 	// fprintf(stderr, "%s\n", "line split");
 	idx = 0;

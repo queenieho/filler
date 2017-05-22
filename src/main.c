@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 01:36:22 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 08:41:26 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,8 +180,8 @@ int		main(void)
 	{
 		if (ft_parse(line, &map) == 1) // ft_parse returns 1 when it's done reading the whole map and piece
 		{
-			// ft_print_grid(map->map, map->height, map->width);
-			// ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
+			ft_print_grid(map.map, map.height, map.width);
+			ft_print_grid(map.piece.shape, map.piece.height, map.piece.width);
 			ft_play(&map);
 			solution = ft_solution(&map);
 			// fprintf(stderr, "place piece at: %s\n", solution);
