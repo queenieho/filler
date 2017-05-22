@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:05:06 by qho               #+#    #+#             */
-/*   Updated: 2017/05/20 23:09:51 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 11:51:48 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_print_grid(int **grid, int height, int width)
 	int		c;
 
 	r = -1;
+	ft_putchar_fd('\n', 2);
 	while (++r < height)
 	{
 		c = -1;

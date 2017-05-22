@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 08:41:26 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 11:52:10 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,16 @@ int		ft_parse(char *line, t_map *map)
 	{
 		map->player = ft_get_player(line);
 		map->enemy = (map->player == 'O') ? 'X' : 'O';
-		// fprintf(stderr, "%s player: %c  enemy: %c%s\n", Y, map->player, map->enemy, W);
 	}
 	if (!(ft_strncmp(line, "Plateau", 7)))
 	{
 		ft_init_map(line, map);
-		// fprintf(stderr, "%s map len: %d, map width %d%s\n", Y, map->height, map->width, W);
-		// ft_print_grid(map->map, map->height, map->width);
-		// ft_get_mapsize(line, map);
 		m_row = map->height + 2;
 	}
 	if (!(ft_strncmp(line, "Piece", 5)))
 	{
 		ft_init_piece(line, map);
-		// fprintf(stderr, "%s piece len: %d, piece width %d%s\n", Y, map->piece.height, map->piece.width, W);
-		// ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
-		// ft_get_piecesize(line, &map->piece);
 		p_row = map->piece.height + 1;
-		// p_row = ft_get_linecount(line);
 	}
 	if (m_row > 0 && row == 0)
 	{
@@ -99,34 +91,16 @@ int		ft_parse(char *line, t_map *map)
 			ft_load_map(map, line);
 		m_row--;
 		if (m_row == 0)
-		{
 			ft_heatmap(map);
-			// fprintf(stderr, "%s•••• Done reading map%s\n", B, W);
-			// ft_print_grid(map->map, map->height, map->width);
-		}
 	}
-
 	if (p_row > 0 && m_row == 0)
 	{
 		row = 1;
 		if (p_row <= map->piece.height)
-		{
 			ft_load_piece(&map->piece, line);
-			// fprintf(stderr, "%s%s%s\n", R, line, W);
-		}
 		p_row--;
 		if (p_row == 0)
-		{
-			// fprintf(stderr, "%s•••• Done reading piece%s\n", R, W);
-			// fprintf(stderr, "MAP\n");
-			// ft_print_grid(map->map, map->height, map->width);
-			// fprintf(stderr, "\nPIECE\n");
-			// ft_print_grid(map->piece.shape, map->piece.height, map->piece.width);
-			// fprintf(stderr, "Origin: row: %d - col: %d\n", map->piece.r, map->piece.c);
-			// fprintf(stderr, "Size: w: %d - h: %d\n", map->piece.width, map->piece.height);
-			// fprintf(stderr, "TRUE Size: w: %d - h: %d\n", map->piece.true_w, map->piece.true_h);
 			return (1);
-		}
 	}
 	return (0);
 }
@@ -180,24 +154,17 @@ int		main(void)
 	{
 		if (ft_parse(line, &map) == 1) // ft_parse returns 1 when it's done reading the whole map and piece
 		{
+			ft_putchar_fd('\n', 2);
 			ft_print_grid(map.map, map.height, map.width);
 			ft_print_grid(map.piece.shape, map.piece.height, map.piece.width);
 			ft_play(&map);
 			solution = ft_solution(&map);
-			// fprintf(stderr, "place piece at: %s\n", solution);
 			ft_putstr_fd(solution, 1);
 			free(solution);
-			// write(1, "8 2\n", 5);
 			ft_cleanup_map(&map);
-			
-			// sleep(1);
-			// Analize map, analize piece and place piece
 		}
-		// fprintf(stderr, "%3d: %s%s%s\n", i, G, line, W);
-		// fprintf(stderr, "test line\n");
 		free(line);
 		i++;
 	}
-	// fprintf(stderr, "%stest line: %d %s%s\n", G, i, line, W);
 	return (0);
 }

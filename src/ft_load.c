@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 15:11:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 08:40:25 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 11:39:20 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,15 @@ void	ft_heatmap(t_map *map)
 	ring = 0;
 	while (++ring <= 3)
 	{
-		// fprintf(stderr, "ring: %d\n", ring);
 		if (ring == 1)
 			ft_add_ring(map, ring, 9);
 		else
 			ft_add_ring(map, ring, ring - 1);
-		// sleep(1);
 	}
 	ring--;
 	while (--ring > 0)
 	{
-		// fprintf(stderr, "ring: %d\n", ring);
 		ft_add_ring(map, ring, ring + 1);
-		// sleep(1);
 	}
 }
 
@@ -182,7 +178,6 @@ void	ft_load_piece(t_piece *piece, char *line)
 
 void	ft_load_map(t_map *map, char *line)
 {
-	// fprintf(stderr, "%s\n", "loading line");
 	char		**split;
 	static int	r = 0;
 	int			c;
@@ -191,7 +186,6 @@ void	ft_load_map(t_map *map, char *line)
 	if (*line == '\0')
 		return ;
 	split = ft_strsplit(line, ' ');
-	// fprintf(stderr, "%s\n", "line split");
 	idx = 0;
 	c = -1;
 	while (++c < map->width)
