@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:50 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 18:54:21 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 21:50:10 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ int		main(void)
 	{
 		if (ft_parse(line, &map) == 1)
 		{
-			ft_play(&map);
+			if ((map.width < 50 && map.player == 'O') ||
+				(map.width > 50 && map.player == 'X'))
+				ft_play(&map);
+			else
+				ft_play2(&map, map.piece);
 			solution = ft_solution(&map);
 			ft_print_answer(solution, map);
 			free(solution);

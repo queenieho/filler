@@ -35,3 +35,4 @@
 ref/**
 .nfs.*
 filler
+resources/filler.trace

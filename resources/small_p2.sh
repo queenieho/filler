@@ -16,7 +16,7 @@ n=1
 while [ $n -le 10 ]
 do
 	printf "\nTest number $n\n"
-	./filler_vm -f maps/map00 -p1 players/carli.filler 2 -p2 .././filler 2>&1 | grep "=="
+	./filler_vm -f maps/map00 -p1 players/carli.filler -p2 .././filler 2>&1 | grep "=="
 	cat filler.trace | grep "won"
 	n=$(( n+1 ))
 done
@@ -36,7 +36,7 @@ n=1
 while [ $n -le 10 ]
 do
 	printf "\nTest number $n\n"
-	./filler_vm -f maps/map00 -p1 players/grati.filler 2 -p2 .././filler 2>&1 | grep "=="
+	./filler_vm -f maps/map00 -p1 players/grati.filler -p2 .././filler 2>&1 | grep "=="
 	cat filler.trace | grep "won"
 	n=$(( n+1 ))
 done

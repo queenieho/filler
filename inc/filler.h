@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 17:21:32 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 19:07:46 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 21:56:30 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@
 #  define WERR1(a, b, c) if(a){ft_putendl_fd(b, 2);return(c);}
 #  define WERR2(a, b, c, d) if(a){b;ft_putendl_fd(c, 2);return(d);}
 # endif
+
+typedef struct	s_score
+{
+	int		score;
+	int		saved_score;
+	int		found;
+}				t_score;
 
 typedef struct	s_piece
 {
@@ -110,6 +117,12 @@ int				ft_check_place(int piece, int map, int *p_flag, int *score);
 int				ft_try_place(t_map *m, t_piece p, int r, int c);
 void			ft_save_position(t_map *m, int r, int c);
 void			ft_play(t_map *m);
+
+/*
+** FT_PLAY2_C
+*/
+void			ft_play22(t_score *s, t_map *m, int r, int c);
+void			ft_play2(t_map *m, t_piece p);
 
 /*
 ** FT_PRINT_C
