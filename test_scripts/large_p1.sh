@@ -1,5 +1,5 @@
 #!/bin/sh
-printf "Running small map as player 1 - O\n"
+printf "Running large map as player 1 - O\n"
 printf "===========================================\n"
 printf "Against abanlin\n"
 n=1

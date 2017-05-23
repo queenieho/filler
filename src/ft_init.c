@@ -6,7 +6,7 @@
 /*   By: qho <qho@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:06:57 by qho               #+#    #+#             */
-/*   Updated: 2017/05/22 11:38:33 by qho              ###   ########.fr       */
+/*   Updated: 2017/05/22 19:02:58 by qho              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_get_piecesize(char *line, t_piece *piece)
 	piece->width = ft_get_width(line);
 }
 
-void	ft_init_piece(char *line, t_map *map)
+void	ft_init_piece(char *line, t_map *map, int *p_row)
 {
 	int		r;
 	int		c;
@@ -41,6 +41,7 @@ void	ft_init_piece(char *line, t_map *map)
 			map->piece.shape[r][c] = 0;
 		}
 	}
+	*p_row = map->piece.height + 1;
 }
 
 void	ft_get_mapsize(char *line, t_map *map)
@@ -49,7 +50,7 @@ void	ft_get_mapsize(char *line, t_map *map)
 	map->width = ft_get_width(line);
 }
 
-void	ft_init_map(char *line, t_map *map)
+void	ft_init_map(char *line, t_map *map, int *m_row)
 {
 	int		r;
 	int		c;
@@ -62,8 +63,7 @@ void	ft_init_map(char *line, t_map *map)
 		map->map[r] = (int *)malloc(sizeof(int) * map->width);
 		c = -1;
 		while (++c < map->width)
-		{
 			map->map[r][c] = 0;
-		}
 	}
+	*m_row = map->height + 2;
 }
