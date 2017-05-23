@@ -6,7 +6,7 @@
 #    By: qho <qho@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/19 17:15:28 by qho               #+#    #+#              #
-#    Updated: 2017/05/22 21:49:28 by qho              ###   ########.fr        #
+#    Updated: 2017/05/22 22:05:05 by qho              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(SRC)
 	@make -C libft
 	@make -C get_next_line
 	@$(CC) $(CFLAGS) -o $(NAME) $(SRC) $(LIBFT) $(GNL) -I $(INC)
-	@echo "\033[32mCompiled fdf\033[0m"
+	@echo "\033[32mCompiled filler\033[0m"
 
 norm:
 	norminette $(SRC) $(INC)
